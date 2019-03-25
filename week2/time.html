@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<center>
+		
+		<span class="times"></span>
+		<input type="hidden" id="nowtime">
+	</center>
+</body>
+</html>
+<script src="jquery-1.8.3.js"></script>
+<script>
+	$starttime=new Date('2020/1/1');
+	setInterval(function(){
+		
+		$.ajax({
+			url:'time.php',
+			type:'get',
+			data:{},
+			dataType:'json',
+			success:function(e){
+				$("#nowtime").val(e);
+			}
+		})
+		var nowtime=$("#nowtime").val();
+		var time=$starttime-nowtime;
+		
+		var s=parseInt(time/1000%60);
+		var m=parseInt(time/1000/60%60);
+		var h=parseInt(time/1000/60/60%24);
+		var d=parseInt(time/1000/60/60/24);
+		$(".times").html('距离2020年1月1日还有'+d+'天'+h+'小时'+m+'分钟'+s+'秒');
+	},1000)
+
+</script>
