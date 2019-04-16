@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<center>
+		<input type="text" id="uname"><br>
+		<input type="button" onclick="Websocket()">
+	</center>
+</body>
+</html>
+<script>
+	function Websocket(){
+		if ("Websocket in window") {
+			alert("您的浏览器支持");
+		}
+	var ws=new Websocket("ws://127.0.0.1:3000/");
+	}
+	ws.oppen=function(){
+		var uname=document.getElementById('uname');
+		ws.send(uname);
+	};
+	ws.onmessage=function(evt){
+		var received_msg=evt.data;
+	}
+	ws.onclose=function(){
+		alert(“关闭);
+	}
+</script>
